@@ -27,13 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
         countdownElement.innerHTML = `${years}y ${months}m ${days}d <br> ${hours}h ${minutes}m ${seconds}s`;
     }
     setInterval(updateAge, 1000);
-    updateAge();
+    updateAge();*/
 
     // --- Initialize AOS (Animate on Scroll) ---
-    AOS.init({
-        duration: 800,
-        once: true,
-    });*/
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    } else {
+        document.querySelectorAll('[data-aos]').forEach((el) => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+    }
 
     // --- Initialize LightGallery ---
     lightGallery(document.getElementById('lightgallery'), {
