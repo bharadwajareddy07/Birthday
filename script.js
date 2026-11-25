@@ -174,34 +174,5 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-
-    // --- PWA Install Prompt ---
-    let deferredPrompt;
-    const installBtn = document.getElementById('install-app-btn');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (installBtn) {
-            installBtn.classList.remove('hidden');
-        }
-    });
-
-    if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            await deferredPrompt.userChoice;
-            deferredPrompt = null;
-            installBtn.classList.add('hidden');
-        });
-    }
-
-    window.addEventListener('appinstalled', () => {
-        deferredPrompt = null;
-        if (installBtn) {
-            installBtn.classList.add('hidden');
-        }
-    });
 });
 

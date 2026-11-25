@@ -1,4 +1,4 @@
-const CACHE_NAME = 'happy-birthday-pwa-v3';
+const CACHE_NAME = 'happy-birthday-pwa-v4';
 const CORE_ASSETS = [
   './',
   './index.html',
