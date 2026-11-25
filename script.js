@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // --- Live Age Counter ---
-    const birthDate = new Date('2006-08-14T00:00:00');
+    /*const birthDate = new Date('2006-08-14T00:00:00');
     const countdownElement = document.getElementById('countdown');
 
     function updateAge() {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
         duration: 800,
         once: true,
-    });
+    });*/
 
     // --- Initialize LightGallery ---
     lightGallery(document.getElementById('lightgallery'), {
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoPlayer = document.getElementById('video-player');
     const videoUploadLabel = document.getElementById('video-upload-label');
 
-    if(videoUploadInput && videoPlayer && videoUploadLabel) {
+    if (videoUploadInput && videoPlayer && videoUploadLabel) {
         videoUploadLabel.addEventListener('click', () => {
             videoUploadInput.click();
         });
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.flipSpeed = Math.random() * 0.03;
         }
 
-        Petal.prototype.draw = function() {
+        Petal.prototype.draw = function () {
             if (this.y > canvas.height || this.x > canvas.width) {
                 this.x = -this.w;
                 this.y = Math.random() * canvas.height * 2 - canvas.height;
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fill();
         }
 
-        Petal.prototype.update = function() {
+        Petal.prototype.update = function () {
             this.x += this.xSpeed;
             this.y += this.ySpeed;
             this.flip += this.flipSpeed;
