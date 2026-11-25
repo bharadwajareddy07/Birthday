@@ -46,14 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollLeftBtn = document.getElementById('scroll-left-btn');
     const scrollRightBtn = document.getElementById('scroll-right-btn');
     if (scroller && scrollLeftBtn && scrollRightBtn) {
-        const card = scroller.querySelector('.snap-center');
-        const cardWidth = card.offsetWidth + parseInt(getComputedStyle(card.parentElement).gap);
+        function getScrollStep() {
+            const card = scroller.querySelector('.snap-center');
+            if (!card) return 300;
+            const gap = parseInt(getComputedStyle(scroller).gap) || 0;
+            return card.offsetWidth + gap;
+        }
 
         scrollRightBtn.addEventListener('click', () => {
-            scroller.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            scroller.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
         });
         scrollLeftBtn.addEventListener('click', () => {
-            scroller.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            scroller.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
         });
     }
 
@@ -85,7 +89,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let petals = [];
-        const numPetals = 50;
+
+        function getPetalCount() {
+            return window.innerWidth < 768 ? 25 : 50;
+        }
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -95,11 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
         resizeCanvas();
 
         function Petal() {
+            const scale = window.innerWidth < 768 ? 0.75 : 1;
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height * 2 - canvas.height;
-            this.w = 25 + Math.random() * 15;
-            this.h = 20 + Math.random() * 10;
-            this.opacity = this.w / 40;
+            this.w = (25 + Math.random() * 15) * scale;
+            this.h = (20 + Math.random() * 10) * scale;
+            this.opacity = Math.min(1, this.w / (40 * scale));
             this.flip = Math.random();
             this.xSpeed = 1.5 + Math.random() * 2;
             this.ySpeed = 1 + Math.random() * 1;
@@ -133,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function createPetals() {
             petals = [];
+            const numPetals = getPetalCount();
             for (let i = 0; i < numPetals; i++) {
                 petals.push(new Petal());
             }
