@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday, [Enter Name of your loved one]!</title>
 
+  <!-- PWA Manifest & Mobile App Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFB7C5">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Happy Birthday">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+
   <!-- This script pulls in Tailwind CSS for styling -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -227,6 +238,11 @@
   <p>Enjoy your day to the fullest.</p>
   <p class="text-sm opacity-70 mt-2">Hope you liked it...</p>
 </footer>
+
+<!-- Floating PWA Install Button (shown when browser supports install prompt) -->
+<button id="install-app-btn" class="hidden fixed bottom-5 right-5 z-50 bg-navy text-white font-semibold px-4 py-2.5 rounded-full shadow-lg border-2 border-[#FFB7C5] hover:opacity-90 transition-opacity text-sm">
+  Install App
+</button>
 
 <!-- These scripts are for the animations and photo gallery -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

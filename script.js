@@ -158,5 +158,43 @@ document.addEventListener('DOMContentLoaded', function () {
         createPetals();
         animate();
     }
+
+    // --- PWA Service Worker Registration ---
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').catch((err) => {
+                console.warn('Service worker registration failed:', err);
+            });
+        });
+    }
+
+    // --- PWA Install Prompt ---
+    let deferredPrompt;
+    const installBtn = document.getElementById('install-app-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (installBtn) {
+            installBtn.classList.remove('hidden');
+        }
+    });
+
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            installBtn.classList.add('hidden');
+        });
+    }
+
+    window.addEventListener('appinstalled', () => {
+        deferredPrompt = null;
+        if (installBtn) {
+            installBtn.classList.add('hidden');
+        }
+    });
 });
 

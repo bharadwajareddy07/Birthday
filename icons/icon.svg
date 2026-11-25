@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#2c3e50"/>
+  <circle cx="256" cy="256" r="196" fill="#F0F8FF"/>
+  <!-- Cake base -->
+  <rect x="136" y="256" width="240" height="120" rx="20" fill="#FFB7C5"/>
+  <rect x="136" y="256" width="240" height="34" rx="14" fill="#ffffff"/>
+  <!-- Upper tier -->
+  <rect x="176" y="196" width="160" height="68" rx="16" fill="#ff8fa3"/>
+  <!-- Candle -->
+  <rect x="246" y="132" width="20" height="64" rx="8" fill="#ffffff"/>
+  <!-- Flame -->
+  <path d="M256 84 C272 108 274 126 256 134 C238 126 240 108 256 84 Z" fill="#ffd166"/>
+</svg>
